@@ -1,6 +1,6 @@
 services:
-  prometheus:
-    container_name: prometheus
+  apprise:
+    container_name: apprise
     environment:
       - PGID=${PGID}
       - PUID=${PUID}
@@ -10,8 +10,8 @@ services:
       options:
         max-file: ${DOCKERLOGGING_MAXFILE}
         max-size: ${DOCKERLOGGING_MAXSIZE}
-    restart: ${PROMETHEUS_RESTART}
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${DOCKERCONFDIR}/prometheus:/config
+      - ${DOCKERCONFDIR}/apprise:/config
       - ${DOCKERSTORAGEDIR}:/storage
